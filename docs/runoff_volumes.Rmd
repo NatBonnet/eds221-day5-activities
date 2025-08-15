@@ -1,0 +1,16 @@
+```{r}
+library(tidyverse)
+source(here::here("src", "storm_runoff.R"))
+imperviousness <- seq(from = 0.6, to = 0.8, by = 0.01)
+
+runoff_values <- storm_runoff(Ia = imperviousness, A = 182)
+
+watershed_runoff <- data.frame(runoff_values, imperviousness)
+
+watershed_plot <- ggplot(watershed_runoff, aes(x = imperviousness, y = runoff_values)) +
+  geom_point()+
+  geom_line() 
+
+print(watershed_plot)
+```
+
